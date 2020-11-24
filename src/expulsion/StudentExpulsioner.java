@@ -17,16 +17,14 @@ public class StudentExpulsioner {
 
         SecondaryParameters.RANDOM.setActive(parameters[3]);
         SecondaryParameters.FULLMOON.setActive(parameters[4]);
+
+        printExpulsionerInfo(parameters);
     }
 
     public void expulse(Student student){
         student.getStudentType().expulse(student);
         debtsExpulsion.expulse(student);
-
-        if (student.getIsExpulsed()){
-            checkLucky(student);
-        }
-
+        checkLucky(student);
         student.printExpulsionInfo();
     }
 
@@ -38,5 +36,13 @@ public class StudentExpulsioner {
                 beer.setCount(beer.getCount()-1);
             }
         }
+    }
+
+    public void printExpulsionerInfo(boolean[] parameters){
+        System.out.println("Конфигурация отчислятора: ");
+        for (boolean b : parameters){
+            System.out.print(b + " ");
+        }
+        System.out.println("\nКоличество бутылок пива: " + beer.getCount() + "\n");
     }
 }
